@@ -1,0 +1,5 @@
+.yarn/cache
+.log
+.direnv
+.devenv*
+.pre-commit-config.yaml
