@@ -4,22 +4,18 @@ import { StackSet, StackSetTarget, StackSetTemplate } from 'cdk-stacksets';
 
 import { DrataStackSet } from '#@/stack-set';
 
-test('default', () => {
+test('produces an identical role to the official template', () => {
   const app = new App();
   const stack = new Stack(app);
 
-  const drataStackSet = new DrataStackSet(stack, 'drata', {
-    drata: {
-      externalId: '1234567890',
-    },
-  });
+  const drataStackSet = new DrataStackSet(stack, 'DrataStack');
 
   new StackSet(stack, 'StackSet', {
     target: StackSetTarget.fromAccounts({
-      regions: ['us-east-1'],
+      regions: ['eu-west-1'],
       accounts: ['11111111111'],
       parameterOverrides: {
-        Param1: 'Value1',
+        RoleSTSExternalID: '1234567890',
       },
     }),
     template: StackSetTemplate.fromStackSetStack(drataStackSet),
@@ -34,11 +30,65 @@ test('default', () => {
     },
     StackInstancesGroup: [
       {
-        Regions: ['us-east-1'],
+        Regions: ['eu-west-1'],
         DeploymentTargets: {
           Accounts: ['11111111111'],
         },
       },
     ],
+  });
+
+  Template.fromStack(stack).hasResourceProperties('AWS::IAM::Role', {
+    AssumeRolePolicyDocument: {
+      Statement: [
+        {
+          Action: 'sts:AssumeRole',
+          Condition: {
+            StringEquals: {
+              'sts:ExternalId': {
+                Ref: 'externalId',
+              },
+            },
+          },
+          Effect: 'Allow',
+          Principal: {
+            AWS: {
+              'Fn::Join': [
+                '',
+                [
+                  'arn:',
+                  {
+                    Ref: 'AWS::Partition',
+                  },
+                  ':iam::',
+                  {
+                    Ref: 'drataAWSAccountId',
+                  },
+                  ':root',
+                ],
+              ],
+            },
+          },
+        },
+      ],
+      Version: '2012-10-17',
+    },
+    Description: 'Cross-account read-only access for Drata Autopilot',
+    ManagedPolicyArns: [
+      {
+        'Fn::Join': [
+          '',
+          [
+            'arn:',
+            {
+              Ref: 'AWS::Partition',
+            },
+            ':iam::aws:policy/SecurityAudit',
+          ],
+        ],
+      },
+    ],
+    MaxSessionDuration: 43200,
+    RoleName: 'DrataAutopiloRole',
   });
 });

@@ -1351,6 +1351,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@factbird/drata-cdk-stackset@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "@factbird/drata-cdk-stackset@workspace:."
+  dependencies:
+    "@babel/core": "npm:^7.26.0"
+    "@babel/preset-env": "npm:^7.26.0"
+    "@babel/preset-typescript": "npm:^7.26.0"
+    "@types/babel__core": "npm:^7"
+    "@types/babel__preset-env": "npm:^7"
+    "@types/jest": "npm:^29.5.14"
+    aws-cdk-lib: "npm:^2.173.2"
+    babel-jest: "npm:^29.7.0"
+    cdk-stacksets: "npm:^0.0.150"
+    constructs: "npm:^10.4.2"
+    jest: "npm:^29.7.0"
+  languageName: unknown
+  linkType: soft
+
 "@isaacs/cliui@npm:^8.0.2":
   version: 8.0.2
   resolution: "@isaacs/cliui@npm:8.0.2"
@@ -2393,24 +2411,6 @@ __metadata:
   checksum: 10c0/32e27ac7dbffdf2fb0eb5a84efd98a9ad084fbabd5ac9abb8757c6770d5320d2acd172830b28c4add29bb873d59420601dfc805ac4064330ce59b1adfd0593b2
   languageName: node
   linkType: hard
-
-"drata-cdk-stackset@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "drata-cdk-stackset@workspace:."
-  dependencies:
-    "@babel/core": "npm:^7.26.0"
-    "@babel/preset-env": "npm:^7.26.0"
-    "@babel/preset-typescript": "npm:^7.26.0"
-    "@types/babel__core": "npm:^7"
-    "@types/babel__preset-env": "npm:^7"
-    "@types/jest": "npm:^29.5.14"
-    aws-cdk-lib: "npm:^2.173.2"
-    babel-jest: "npm:^29.7.0"
-    cdk-stacksets: "npm:^0.0.150"
-    constructs: "npm:^10.4.2"
-    jest: "npm:^29.7.0"
-  languageName: unknown
-  linkType: soft
 
 "eastasianwidth@npm:^0.2.0":
   version: 0.2.0

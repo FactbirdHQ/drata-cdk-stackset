@@ -1,29 +1,35 @@
-import { Duration } from 'aws-cdk-lib';
+import { CfnParameter, Duration } from 'aws-cdk-lib';
 import { AccountPrincipal, ManagedPolicy, PolicyStatement, Role } from 'aws-cdk-lib/aws-iam';
 import { StackSetStack, type StackSetStackProps } from 'cdk-stacksets';
 import type { Construct } from 'constructs';
 
 const defaultAccountId = '269135526815';
 
-type DrataProperties = {
-  // Details provided by Drata
-  drata: {
-    accountId?: string;
-    externalId: string;
-  };
-};
-
 export class DrataStackSet extends StackSetStack {
-  constructor(scope: Construct, id: string, { drata, ...props }: StackSetStackProps & DrataProperties) {
+  constructor(scope: Construct, id: string, props?: StackSetStackProps) {
     super(scope, id, props);
 
-    const { accountId = defaultAccountId, externalId } = drata;
+    const accountId = new CfnParameter(scope, 'drataAWSAccountId', {
+      type: 'String',
+      description: "Drata's AWS account ID.",
+      default: defaultAccountId,
+      allowedPattern: '\\d{12}$',
+      minLength: 1,
+      constraintDescription: "drataAWSAccountId should be exactly 12 digits (numeric characters). It's required.",
+    });
 
-    const drataRole = new Role(scope, 'drata-role', {
-      assumedBy: new AccountPrincipal(accountId).withConditions({
-        StringEquals: { 'sts:ExternalId': externalId },
-      }),
+    const externalId = new CfnParameter(scope, 'externalId', {
+      type: 'String',
+      description: 'STS ExternalId condition value to use with the role.',
+      allowedPattern: '[a-zA-Z0-9\\=\\,\\.\\@\\:\\/\\-_]*',
+      minLength: 1,
+      constraintDescription: 'externalId must be an UUID formatted string and is required.',
+    });
+
+    const drataRole = new Role(scope, 'DrataRole', {
+      assumedBy: new AccountPrincipal(accountId.valueAsString),
       managedPolicies: [ManagedPolicy.fromAwsManagedPolicyName('SecurityAudit')],
+      externalIds: [externalId.valueAsString],
       maxSessionDuration: Duration.hours(12),
       roleName: 'DrataAutopiloRole',
       description: 'Cross-account read-only access for Drata Autopilot',
