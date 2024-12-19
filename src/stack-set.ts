@@ -1,6 +1,6 @@
 import { Duration } from 'aws-cdk-lib';
 import { AccountPrincipal, ManagedPolicy, PolicyStatement, Role } from 'aws-cdk-lib/aws-iam';
-import { StackSet, type StackSetProps } from 'cdk-stacksets';
+import { StackSetStack, type StackSetStackProps } from 'cdk-stacksets';
 import type { Construct } from 'constructs';
 
 const defaultAccountId = '269135526815';
@@ -13,8 +13,8 @@ type DrataProperties = {
   };
 };
 
-export class DrataStackSet extends StackSet {
-  constructor(scope: Construct, id: string, { drata, ...props }: StackSetProps & DrataProperties) {
+export class DrataStackSet extends StackSetStack {
+  constructor(scope: Construct, id: string, { drata, ...props }: StackSetStackProps & DrataProperties) {
     super(scope, id, props);
 
     const { accountId = defaultAccountId, externalId } = drata;
