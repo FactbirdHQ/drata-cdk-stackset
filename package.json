@@ -9,6 +9,7 @@
     "#@/*": ["./src/*", "./src/*.ts"]
   },
   "scripts": {
+    "test": "jest test",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
