@@ -13,7 +13,7 @@ npm i --save-dev @factbird/drata-cdk-stackset
 
 ```typescript
 import { App, Stack } from 'aws-cdk-lib';
-import { StackSet, StackSetTarget, StackSetTemplate } from "cdk-stacksets";
+import { StackSet, StackSetTarget, StackSetTemplate } from 'cdk-stacksets';
 import { DrataStackSet } from 'drata-cdk-stackset';
 
 const app = new App();
@@ -21,7 +21,7 @@ const stack = new Stack(app);
 
 const drataStackSet = new DrataStackSet(stack, 'LambdaStack');
 
-new StackSet(stack, "StackSet", {
+new StackSet(stack, 'StackSet', {
   target: StackSetTarget.fromOrganizationalUnits({
     regions: ['us-east-1'],
     organizationalUnits: ['ou-1111111'],
