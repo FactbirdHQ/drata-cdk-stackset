@@ -19,7 +19,7 @@ import { DrataStackSet } from '@factbird/drata-cdk-stackset';
 const app = new App();
 const stack = new Stack(app);
 
-const drataStackSet = new DrataStackSet(stack, 'LambdaStack');
+const drataStackSet = new DrataStackSet(stack, 'DrataStack');
 
 new StackSet(stack, 'StackSet', {
   target: StackSetTarget.fromOrganizationalUnits({
@@ -47,7 +47,8 @@ or simply `direnv allow` if you have direnv installed.
 
 ## Publish
 
+There's a publish script available in the shell environment. Simply run:
+
 ```bash
-nix build .#dist --impure -L
-(cd result && yarn npm publish)
+publish
 ```
