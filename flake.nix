@@ -26,6 +26,13 @@
             pkgs.nodePackages.yarn
           ];
 
+          scripts = {
+            publish.exec = ''
+              nix build .#dist --impure -L
+              (cd result; npm publish --access public)
+            '';
+          };
+
           pre-commit.hooks = {
             alejandra.enable = true;
             statix = {
@@ -47,5 +54,7 @@
         }
       ];
     };
+
+    dist = import ./nix/dist.nix pkgs;
   };
 }

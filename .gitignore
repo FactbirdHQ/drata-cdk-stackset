@@ -11,3 +11,7 @@
 .direnv
 .devenv*
 .pre-commit-config.yaml
+
+dist
+*.js
+result

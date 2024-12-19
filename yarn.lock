@@ -1361,11 +1361,17 @@ __metadata:
     "@types/babel__core": "npm:^7"
     "@types/babel__preset-env": "npm:^7"
     "@types/jest": "npm:^29.5.14"
+    "@types/node": "npm:^22.10.2"
     aws-cdk-lib: "npm:^2.173.2"
     babel-jest: "npm:^29.7.0"
     cdk-stacksets: "npm:^0.0.150"
     constructs: "npm:^10.4.2"
     jest: "npm:^29.7.0"
+    typescript: "npm:^5.7.2"
+  peerDependencies:
+    aws-cdk-lib: ^2.173.2
+    cdk-stacksets: ^0.0.150
+    constructs: ^10.4.2
   languageName: unknown
   linkType: soft
 
@@ -1830,7 +1836,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*":
+"@types/node@npm:*, @types/node@npm:^22.10.2":
   version: 22.10.2
   resolution: "@types/node@npm:22.10.2"
   dependencies:
@@ -4510,6 +4516,26 @@ __metadata:
   version: 0.21.3
   resolution: "type-fest@npm:0.21.3"
   checksum: 10c0/902bd57bfa30d51d4779b641c2bc403cdf1371fb9c91d3c058b0133694fcfdb817aef07a47f40faf79039eecbaa39ee9d3c532deff244f3a19ce68cea71a61e8
+  languageName: node
+  linkType: hard
+
+"typescript@npm:^5.7.2":
+  version: 5.7.2
+  resolution: "typescript@npm:5.7.2"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 10c0/a873118b5201b2ef332127ef5c63fb9d9c155e6fdbe211cbd9d8e65877283797cca76546bad742eea36ed7efbe3424a30376818f79c7318512064e8625d61622
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@npm%3A^5.7.2#optional!builtin<compat/typescript>":
+  version: 5.7.2
+  resolution: "typescript@patch:typescript@npm%3A5.7.2#optional!builtin<compat/typescript>::version=5.7.2&hash=5786d5"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 10c0/f3b8082c9d1d1629a215245c9087df56cb784f9fb6f27b5d55577a20e68afe2a889c040aacff6d27e35be165ecf9dca66e694c42eb9a50b3b2c451b36b5675cb
   languageName: node
   linkType: hard
 

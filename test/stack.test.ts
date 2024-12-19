@@ -2,7 +2,7 @@ import { App, Stack } from 'aws-cdk-lib';
 import { Template } from 'aws-cdk-lib/assertions';
 import { StackSet, StackSetTarget, StackSetTemplate } from 'cdk-stacksets';
 
-import { DrataStackSet } from '#@/stack-set';
+import { DrataStackSet } from '#@/stack-set.js';
 
 test('produces an identical role to the official template', () => {
   const app = new App();

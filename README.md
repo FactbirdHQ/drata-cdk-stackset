@@ -14,7 +14,7 @@ npm i --save-dev @factbird/drata-cdk-stackset
 ```typescript
 import { App, Stack } from 'aws-cdk-lib';
 import { StackSet, StackSetTarget, StackSetTemplate } from 'cdk-stacksets';
-import { DrataStackSet } from 'drata-cdk-stackset';
+import { DrataStackSet } from '@factbird/drata-cdk-stackset';
 
 const app = new App();
 const stack = new Stack(app);
@@ -44,3 +44,10 @@ Install Nix and enter the development shell,
 > ```
 
 or simply `direnv allow` if you have direnv installed.
+
+## Publish
+
+```bash
+nix build .#dist --impure -L
+(cd result && yarn npm publish)
+```
