@@ -31,8 +31,16 @@ new StackSet(stack, 'StackSet', {
   }),
   deploymentType: DeploymentType.serviceManaged(),
   template: StackSetTemplate.fromStackSetStack(drataStackSet),
+  capabilities: [Capability.NAMED_IAM],
 });
 ```
+
+then simply deploy the StackSet with:
+
+```typescript
+cdk deploy
+```
+
 
 ## Contributing
 
