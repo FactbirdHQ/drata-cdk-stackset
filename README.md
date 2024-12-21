@@ -13,11 +13,11 @@ npm i --save-dev @factbird/drata-cdk-stackset
 
 ```typescript
 import { App, Stack } from 'aws-cdk-lib';
-import { StackSet, StackSetTarget, StackSetTemplate } from 'cdk-stacksets';
+import { DeploymentType, StackSet, StackSetTarget, StackSetTemplate } from 'cdk-stacksets';
 import { DrataStackSet } from '@factbird/drata-cdk-stackset';
 
 const app = new App();
-const stack = new Stack(app);
+const stack = new Stack(app, 'drata');
 
 const drataStackSet = new DrataStackSet(stack, 'DrataStack');
 
@@ -26,9 +26,10 @@ new StackSet(stack, 'StackSet', {
     regions: ['us-east-1'],
     organizationalUnits: ['ou-1111111'],
     parameterOverrides: {
-      externalID: '1234567890',
+      externalId: '1234567890',
     },
   }),
+  deploymentType: DeploymentType.serviceManaged(),
   template: StackSetTemplate.fromStackSetStack(drataStackSet),
 });
 ```
@@ -37,11 +38,9 @@ new StackSet(stack, 'StackSet', {
 
 Install Nix and enter the development shell,
 
-> [!IMPORTANT]
->
-> ```bash
-> nix develop --impure
-> ```
+```bash
+nix develop --impure
+```
 
 or simply `direnv allow` if you have direnv installed.
 

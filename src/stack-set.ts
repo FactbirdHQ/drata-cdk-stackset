@@ -9,7 +9,7 @@ export class DrataStackSet extends StackSetStack {
   constructor(scope: Construct, id: string, props?: StackSetStackProps) {
     super(scope, id, props);
 
-    const accountId = new CfnParameter(scope, 'drataAWSAccountId', {
+    const accountId = new CfnParameter(this, 'drataAWSAccountId', {
       type: 'String',
       description: "Drata's AWS account ID.",
       default: defaultAccountId,
@@ -18,7 +18,7 @@ export class DrataStackSet extends StackSetStack {
       constraintDescription: "drataAWSAccountId should be exactly 12 digits (numeric characters). It's required.",
     });
 
-    const externalId = new CfnParameter(scope, 'externalId', {
+    const externalId = new CfnParameter(this, 'externalId', {
       type: 'String',
       description: 'STS ExternalId condition value to use with the role.',
       allowedPattern: '[a-zA-Z0-9\\=\\,\\.\\@\\:\\/\\-_]*',
@@ -26,7 +26,7 @@ export class DrataStackSet extends StackSetStack {
       constraintDescription: 'externalId must be an UUID formatted string and is required.',
     });
 
-    const drataRole = new Role(scope, 'DrataRole', {
+    const drataRole = new Role(this, 'DrataRole', {
       assumedBy: new AccountPrincipal(accountId.valueAsString),
       managedPolicies: [ManagedPolicy.fromAwsManagedPolicyName('SecurityAudit')],
       externalIds: [externalId.valueAsString],
