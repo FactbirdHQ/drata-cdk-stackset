@@ -24,7 +24,7 @@ const drataStackSet = new DrataStackSet(stack, 'DrataStack');
 new StackSet(stack, 'StackSet', {
   target: StackSetTarget.fromOrganizationalUnits({
     regions: ['us-east-1'],
-    organizationalUnits: ['ou-1111111'],
+    organizationalUnits: ['ou-1111111', 'ou-drata'],
     parameterOverrides: {
       externalId: '1234567890',
     },
@@ -35,12 +35,16 @@ new StackSet(stack, 'StackSet', {
 });
 ```
 
-then simply deploy the StackSet with:
+then simply deploy the StackSet to a dedicated Drata AWS account with:
 
 ```typescript
-cdk deploy
+npx cdk deploy
 ```
 
+Since setting the `AccountFilterType` deployment target property to `UNION` is
+not supported for StackSet creation, create a dedicated organizational unit for
+a Drata account to deploy the autopilot role to it and all other OUs of
+interest.
 
 ## Contributing
 
