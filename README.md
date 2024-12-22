@@ -32,6 +32,7 @@ import { AccountPrincipal, ManagedPolicy, Role } from 'aws-cdk-lib/aws-iam';
 
 const yourAccounts = {
   drata: '987654321',
+  management: '1234567890',
 };
 
 const app = new App();
