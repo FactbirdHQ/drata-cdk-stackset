@@ -11,20 +11,82 @@ npm i --save-dev @factbird/drata-cdk-stackset
 
 ## Usage
 
+This setup assumes the following account structure:
+1. An isolated Drata account that is trusted as a delegated administrator account
+2. Management (with AWSCloudFormationStackSetExecutionRole available that trusts the isolated Drata account)
+3. Target accounts
+
+Service-managed StackSets will not deploy to the management account hence why a
+self-managed variant is necessary. Similarly, a StackSet `UNION` deployment
+target filter is not supported for creation events.
+
+Both 1. and 2. are deployed as self-managed stacksets and 3. is deployed as a
+service-managed stack such that new accounts added to the OUs are populated
+automatically.
+
+If 2. does not have an execution role already, you can deploy that separately - otherwise skip this step and instead extend its trust policy for your Drata account:
+
+```typescript
+import { App, Stack } from 'aws-cdk-lib';
+import { AccountPrincipal, ManagedPolicy, Role } from 'aws-cdk-lib/aws-iam';
+
+const yourAccounts = {
+  drata: '987654321',
+};
+
+const app = new App();
+
+const stack = new Stack(app, 'stackset-execution', {
+  env: {
+    account: yourAccounts.management,
+  },
+});
+
+new Role(stack, 'StackSetExecutionRole', {
+  roleName: 'AWSCloudFormationStackSetExecutionRole',
+  managedPolicies: [ManagedPolicy.fromAwsManagedPolicyName('AdministratorAccess')],
+  assumedBy: new AccountPrincipal(yourAccounts.drata),
+});
+```
+
+For the Drata related resources, both variants of the StackSets can be created like so:
 ```typescript
 import { App, Stack } from 'aws-cdk-lib';
 import { DeploymentType, StackSet, StackSetTarget, StackSetTemplate } from 'cdk-stacksets';
 import { DrataStackSet } from '@factbird/drata-cdk-stackset';
 
+const organizationalUnits = {
+  targetAccounts: 'ou-1234567',
+};
+
+const yourAccounts = {
+  drata: '987654321',
+  management: '1234567890',
+};
+
 const app = new App();
-const stack = new Stack(app, 'drata');
+
+const stack = new Stack(app, 'drata', {
+  env: {
+    account: yourAccounts.drata,
+  },
+});
+
+// The Drata account itself needs to execute the StackSets as a self-managed
+// variant
+new Role(stack, 'StackSetExecutionRole', {
+  roleName: 'AWSCloudFormationStackSetExecutionRole',
+  managedPolicies: [ManagedPolicy.fromAwsManagedPolicyName('AdministratorAccess')],
+  assumedBy: new AccountPrincipal(yourAccounts.drata),
+});
+
 
 const drataStackSet = new DrataStackSet(stack, 'DrataStack');
 
-new StackSet(stack, 'StackSet', {
+const serviceManaged = new StackSet(stack, 'drata-service-managed', {
   target: StackSetTarget.fromOrganizationalUnits({
     regions: ['us-east-1'],
-    organizationalUnits: ['ou-1111111', 'ou-drata'],
+    organizationalUnits: Object.values(organizationalUnits),
     parameterOverrides: {
       externalId: '1234567890',
     },
@@ -33,18 +95,25 @@ new StackSet(stack, 'StackSet', {
   template: StackSetTemplate.fromStackSetStack(drataStackSet),
   capabilities: [Capability.NAMED_IAM],
 });
+
+const selfManaged = new StackSet(stack, 'drata-self-managed', {
+  target: StackSetTarget.fromAccounts({
+    regions: ['us-east-1'],
+    accounts: [yourAccounts.management, yourAccounts.drata],
+    parameterOverrides: {
+      externalId: '1234567890',
+    },
+  }),
+  template: StackSetTemplate.fromStackSetStack(drataStackSet),
+  capabilities: [Capability.NAMED_IAM],
+});
 ```
 
-then simply deploy the StackSet to a dedicated Drata AWS account with:
+then simply deploy the StackSets to a dedicated Drata AWS account with:
 
 ```typescript
 npx cdk deploy
 ```
-
-Since setting the `AccountFilterType` deployment target property to `UNION` is
-not supported for StackSet creation, create a dedicated organizational unit for
-a Drata account to deploy the autopilot role to it and all other OUs of
-interest.
 
 ## Contributing
 
