@@ -64,6 +64,8 @@ const yourAccounts = {
   management: '1234567890',
 };
 
+const externalId = 'aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee';
+
 const app = new App();
 
 const stack = new Stack(app, 'drata', {
@@ -88,7 +90,7 @@ const serviceManaged = new StackSet(stack, 'drata-service-managed', {
     regions: ['us-east-1'],
     organizationalUnits: Object.values(organizationalUnits),
     parameterOverrides: {
-      externalId: '1234567890',
+      externalId,
     },
   }),
   deploymentType: DeploymentType.serviceManaged(),
@@ -101,12 +103,30 @@ const selfManaged = new StackSet(stack, 'drata-self-managed', {
     regions: ['us-east-1'],
     accounts: [yourAccounts.management, yourAccounts.drata],
     parameterOverrides: {
-      externalId: '1234567890',
+      externalId,
     },
   }),
   template: StackSetTemplate.fromStackSetStack(drataStackSet),
   capabilities: [Capability.NAMED_IAM],
 });
+
+// Consider if the following two workarounds are still necessary:
+
+// See https://github.com/cdklabs/cdk-stacksets/pull/678
+if (selfManaged.role) {
+  selfManaged.node.addDependency(selfManaged.role);
+}
+
+// See https://github.com/cdklabs/cdk-stacksets/issues/115
+for (const stackSet of [serviceManaged, selfManaged]) {
+  const cfnStackSet = stackSet.node.defaultChild as CfnStackSet;
+  cfnStackSet.addOverride('Properties.Parameters', [
+    {
+      ParameterKey: 'externalId',
+      ParameterValue: '',
+    },
+  ]);
+}
 ```
 
 then simply deploy the StackSets to a dedicated Drata AWS account with:
