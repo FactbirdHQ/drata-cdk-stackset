@@ -26,7 +26,7 @@ test('produces an identical role to the official template', () => {
     PermissionModel: 'SELF_MANAGED',
     TemplateURL: {
       'Fn::Sub':
-        'https://s3.${AWS::Region}.${AWS::URLSuffix}/cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a.json',
+        'https://s3.${AWS::Region}.${AWS::URLSuffix}/cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/cee6cbce79cea76ab7d8819c7fcd5c9de372012e77f2525ceffc58f3c341de9e.json',
     },
     StackInstancesGroup: [
       {
@@ -38,7 +38,12 @@ test('produces an identical role to the official template', () => {
     ],
   });
 
-  Template.fromStack(stack).hasResourceProperties('AWS::IAM::Role', {
+  const templateStack = Template.fromJSON(
+    // @ts-ignore - _toCloudFormation is not publicly exposed - call it anyway!
+    drataStackSet._toCloudFormation(),
+  );
+
+  templateStack.hasResourceProperties('AWS::IAM::Role', {
     AssumeRolePolicyDocument: {
       Statement: [
         {
@@ -89,6 +94,6 @@ test('produces an identical role to the official template', () => {
       },
     ],
     MaxSessionDuration: 43200,
-    RoleName: 'DrataAutopiloRole',
+    RoleName: 'DrataAutopilotRole',
   });
 });
