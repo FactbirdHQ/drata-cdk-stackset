@@ -31,7 +31,7 @@ export class DrataStackSet extends StackSetStack {
       managedPolicies: [ManagedPolicy.fromAwsManagedPolicyName('SecurityAudit')],
       externalIds: [externalId.valueAsString],
       maxSessionDuration: Duration.hours(12),
-      roleName: 'DrataAutopiloRole',
+      roleName: 'DrataAutopilotRole',
       description: 'Cross-account read-only access for Drata Autopilot',
     });
 
