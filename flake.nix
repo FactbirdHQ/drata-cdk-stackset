@@ -16,13 +16,14 @@
   } @ inputs: let
     system = builtins.currentSystem;
     pkgs = nixpkgs.legacyPackages.${system};
+    node = pkgs.nodejs_23;
   in {
     devShell.${system} = devenv.lib.mkShell {
       inherit inputs pkgs;
       modules = [
         {
           packages = [
-            pkgs.nodejs_23
+            node
             pkgs.nodePackages.yarn
           ];
 
@@ -31,6 +32,21 @@
               nix build .#dist --impure -L
               (cd result; npm publish --access public)
             '';
+            snippets = {
+              exec = ''
+                const fs = require('fs');
+
+                const [,, filename] = process.argv;
+
+                const contents = fs.readFileSync(filename).toString();
+
+                process.stdout.write(contents.replace(/\$embed: (.+)\$/g, (_, snippet) => {
+                    return fs.readFileSync(snippet).toString().trim();
+                }));
+              '';
+              package = node;
+              binary = "node";
+            };
           };
 
           pre-commit.hooks = {
