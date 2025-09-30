@@ -28,12 +28,12 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "aws-cdk-lib": "^2.173.2",
+    "aws-cdk-lib": "^2.189.1",
     "cdk-stacksets": "^0.0.150",
     "constructs": "^10.4.2"
   },
   "peerDependencies": {
-    "aws-cdk-lib": "^2.173.2",
+    "aws-cdk-lib": "^2.189.1",
     "cdk-stacksets": "^0.0.150",
     "constructs": "^10.4.2"
   },
