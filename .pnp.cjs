@@ -34,7 +34,7 @@ const RAW_RUNTIME_STATE =
           ["@types/babel__preset-env", "npm:7.9.7"],\
           ["@types/jest", "npm:29.5.14"],\
           ["@types/node", "npm:22.10.2"],\
-          ["aws-cdk-lib", "virtual:85eccb80a6b06e5f0f80b724691cd62102c5821f07f1af0f3044440f274f118645d516e466e670f4ea6cd6bac1795b97440e63e71ed9c3ba08713fbe02abd0cc#npm:2.173.2"],\
+          ["aws-cdk-lib", "virtual:85eccb80a6b06e5f0f80b724691cd62102c5821f07f1af0f3044440f274f118645d516e466e670f4ea6cd6bac1795b97440e63e71ed9c3ba08713fbe02abd0cc#npm:2.218.0"],\
           ["babel-jest", "virtual:85eccb80a6b06e5f0f80b724691cd62102c5821f07f1af0f3044440f274f118645d516e466e670f4ea6cd6bac1795b97440e63e71ed9c3ba08713fbe02abd0cc#npm:29.7.0"],\
           ["cdk-stacksets", "virtual:85eccb80a6b06e5f0f80b724691cd62102c5821f07f1af0f3044440f274f118645d516e466e670f4ea6cd6bac1795b97440e63e71ed9c3ba08713fbe02abd0cc#npm:0.0.150"],\
           ["constructs", "npm:10.4.2"],\
@@ -56,19 +56,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@aws-cdk/asset-awscli-v1", [\
-      ["npm:2.2.215", {\
-        "packageLocation": "./.yarn/cache/@aws-cdk-asset-awscli-v1-npm-2.2.215-7159fd0f13-aa91e84d5f.zip/node_modules/@aws-cdk/asset-awscli-v1/",\
+      ["npm:2.2.242", {\
+        "packageLocation": "./.yarn/cache/@aws-cdk-asset-awscli-v1-npm-2.2.242-612846f855-bf0d1694de.zip/node_modules/@aws-cdk/asset-awscli-v1/",\
         "packageDependencies": [\
-          ["@aws-cdk/asset-awscli-v1", "npm:2.2.215"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["@aws-cdk/asset-kubectl-v20", [\
-      ["npm:2.1.3", {\
-        "packageLocation": "./.yarn/cache/@aws-cdk-asset-kubectl-v20-npm-2.1.3-08b4b687ef-12be13eb04.zip/node_modules/@aws-cdk/asset-kubectl-v20/",\
-        "packageDependencies": [\
-          ["@aws-cdk/asset-kubectl-v20", "npm:2.1.3"]\
+          ["@aws-cdk/asset-awscli-v1", "npm:2.2.242"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -83,12 +74,12 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@aws-cdk/cloud-assembly-schema", [\
-      ["npm:38.0.1", {\
-        "packageLocation": "./.yarn/cache/@aws-cdk-cloud-assembly-schema-npm-38.0.1-469647254b-5cfc455f58.zip/node_modules/@aws-cdk/cloud-assembly-schema/",\
+      ["npm:48.11.0", {\
+        "packageLocation": "./.yarn/cache/@aws-cdk-cloud-assembly-schema-npm-48.11.0-a906bf9c03-100dc9001e.zip/node_modules/@aws-cdk/cloud-assembly-schema/",\
         "packageDependencies": [\
-          ["@aws-cdk/cloud-assembly-schema", "npm:38.0.1"],\
+          ["@aws-cdk/cloud-assembly-schema", "npm:48.11.0"],\
           ["jsonschema", "npm:1.4.1"],\
-          ["semver", "npm:7.6.3"]\
+          ["semver", "npm:7.7.2"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -2713,7 +2704,7 @@ const RAW_RUNTIME_STATE =
           ["@types/babel__preset-env", "npm:7.9.7"],\
           ["@types/jest", "npm:29.5.14"],\
           ["@types/node", "npm:22.10.2"],\
-          ["aws-cdk-lib", "virtual:85eccb80a6b06e5f0f80b724691cd62102c5821f07f1af0f3044440f274f118645d516e466e670f4ea6cd6bac1795b97440e63e71ed9c3ba08713fbe02abd0cc#npm:2.173.2"],\
+          ["aws-cdk-lib", "virtual:85eccb80a6b06e5f0f80b724691cd62102c5821f07f1af0f3044440f274f118645d516e466e670f4ea6cd6bac1795b97440e63e71ed9c3ba08713fbe02abd0cc#npm:2.218.0"],\
           ["babel-jest", "virtual:85eccb80a6b06e5f0f80b724691cd62102c5821f07f1af0f3044440f274f118645d516e466e670f4ea6cd6bac1795b97440e63e71ed9c3ba08713fbe02abd0cc#npm:29.7.0"],\
           ["cdk-stacksets", "virtual:85eccb80a6b06e5f0f80b724691cd62102c5821f07f1af0f3044440f274f118645d516e466e670f4ea6cd6bac1795b97440e63e71ed9c3ba08713fbe02abd0cc#npm:0.0.150"],\
           ["constructs", "npm:10.4.2"],\
@@ -3406,32 +3397,31 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["aws-cdk-lib", [\
-      ["npm:2.173.2", {\
-        "packageLocation": "./.yarn/cache/aws-cdk-lib-npm-2.173.2-cc1c77f96a-b788dc56cc.zip/node_modules/aws-cdk-lib/",\
+      ["npm:2.218.0", {\
+        "packageLocation": "./.yarn/cache/aws-cdk-lib-npm-2.218.0-dac20b1b67-ac8f190465.zip/node_modules/aws-cdk-lib/",\
         "packageDependencies": [\
-          ["aws-cdk-lib", "npm:2.173.2"]\
+          ["aws-cdk-lib", "npm:2.218.0"]\
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:85eccb80a6b06e5f0f80b724691cd62102c5821f07f1af0f3044440f274f118645d516e466e670f4ea6cd6bac1795b97440e63e71ed9c3ba08713fbe02abd0cc#npm:2.173.2", {\
-        "packageLocation": "./.yarn/__virtual__/aws-cdk-lib-virtual-fcf46fc987/0/cache/aws-cdk-lib-npm-2.173.2-cc1c77f96a-b788dc56cc.zip/node_modules/aws-cdk-lib/",\
+      ["virtual:85eccb80a6b06e5f0f80b724691cd62102c5821f07f1af0f3044440f274f118645d516e466e670f4ea6cd6bac1795b97440e63e71ed9c3ba08713fbe02abd0cc#npm:2.218.0", {\
+        "packageLocation": "./.yarn/__virtual__/aws-cdk-lib-virtual-e596752c05/0/cache/aws-cdk-lib-npm-2.218.0-dac20b1b67-ac8f190465.zip/node_modules/aws-cdk-lib/",\
         "packageDependencies": [\
-          ["aws-cdk-lib", "virtual:85eccb80a6b06e5f0f80b724691cd62102c5821f07f1af0f3044440f274f118645d516e466e670f4ea6cd6bac1795b97440e63e71ed9c3ba08713fbe02abd0cc#npm:2.173.2"],\
-          ["@aws-cdk/asset-awscli-v1", "npm:2.2.215"],\
-          ["@aws-cdk/asset-kubectl-v20", "npm:2.1.3"],\
+          ["aws-cdk-lib", "virtual:85eccb80a6b06e5f0f80b724691cd62102c5821f07f1af0f3044440f274f118645d516e466e670f4ea6cd6bac1795b97440e63e71ed9c3ba08713fbe02abd0cc#npm:2.218.0"],\
+          ["@aws-cdk/asset-awscli-v1", "npm:2.2.242"],\
           ["@aws-cdk/asset-node-proxy-agent-v6", "npm:2.1.0"],\
-          ["@aws-cdk/cloud-assembly-schema", "npm:38.0.1"],\
+          ["@aws-cdk/cloud-assembly-schema", "npm:48.11.0"],\
           ["@balena/dockerignore", "npm:1.0.2"],\
           ["@types/constructs", null],\
           ["case", "npm:1.6.3"],\
           ["constructs", "npm:10.4.2"],\
-          ["fs-extra", "npm:11.2.0"],\
+          ["fs-extra", "npm:11.3.2"],\
           ["ignore", "npm:5.3.2"],\
-          ["jsonschema", "npm:1.4.1"],\
+          ["jsonschema", "npm:1.5.0"],\
           ["mime-types", "npm:2.1.35"],\
           ["minimatch", "npm:3.1.2"],\
           ["punycode", "npm:2.3.1"],\
-          ["semver", "npm:7.6.3"],\
+          ["semver", "npm:7.7.2"],\
           ["table", "npm:6.9.0"],\
           ["yaml", "npm:1.10.2"]\
         ],\
@@ -3806,7 +3796,7 @@ const RAW_RUNTIME_STATE =
           ["cdk-stacksets", "virtual:85eccb80a6b06e5f0f80b724691cd62102c5821f07f1af0f3044440f274f118645d516e466e670f4ea6cd6bac1795b97440e63e71ed9c3ba08713fbe02abd0cc#npm:0.0.150"],\
           ["@types/aws-cdk-lib", null],\
           ["@types/constructs", null],\
-          ["aws-cdk-lib", "virtual:85eccb80a6b06e5f0f80b724691cd62102c5821f07f1af0f3044440f274f118645d516e466e670f4ea6cd6bac1795b97440e63e71ed9c3ba08713fbe02abd0cc#npm:2.173.2"],\
+          ["aws-cdk-lib", "virtual:85eccb80a6b06e5f0f80b724691cd62102c5821f07f1af0f3044440f274f118645d516e466e670f4ea6cd6bac1795b97440e63e71ed9c3ba08713fbe02abd0cc#npm:2.218.0"],\
           ["constructs", "npm:10.4.2"]\
         ],\
         "packagePeers": [\
@@ -4288,10 +4278,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["fs-extra", [\
-      ["npm:11.2.0", {\
-        "packageLocation": "./.yarn/cache/fs-extra-npm-11.2.0-6783080799-d77a9a9efe.zip/node_modules/fs-extra/",\
+      ["npm:11.3.2", {\
+        "packageLocation": "./.yarn/cache/fs-extra-npm-11.3.2-490a8d09c5-f5d629e1bb.zip/node_modules/fs-extra/",\
         "packageDependencies": [\
-          ["fs-extra", "npm:11.2.0"],\
+          ["fs-extra", "npm:11.3.2"],\
           ["graceful-fs", "npm:4.2.11"],\
           ["jsonfile", "npm:6.1.0"],\
           ["universalify", "npm:2.0.1"]\
@@ -5328,6 +5318,13 @@ const RAW_RUNTIME_STATE =
           ["jsonschema", "npm:1.4.1"]\
         ],\
         "linkType": "HARD"\
+      }],\
+      ["npm:1.5.0", {\
+        "packageLocation": "./.yarn/cache/jsonschema-npm-1.5.0-a1e4a2d9f7-c24ddb8d74.zip/node_modules/jsonschema/",\
+        "packageDependencies": [\
+          ["jsonschema", "npm:1.5.0"]\
+        ],\
+        "linkType": "HARD"\
       }]\
     ]],\
     ["kleur", [\
@@ -6103,6 +6100,13 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/semver-npm-7.6.3-57e82c14d5-88f33e148b.zip/node_modules/semver/",\
         "packageDependencies": [\
           ["semver", "npm:7.6.3"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
+      ["npm:7.7.2", {\
+        "packageLocation": "./.yarn/cache/semver-npm-7.7.2-dfc3bc5ec9-aca305edfb.zip/node_modules/semver/",\
+        "packageDependencies": [\
+          ["semver", "npm:7.7.2"]\
         ],\
         "linkType": "HARD"\
       }]\
